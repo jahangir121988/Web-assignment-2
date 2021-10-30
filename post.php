@@ -1,6 +1,20 @@
 <?php
 session_start();
-if (isset($_SESSION['todo'])) {
+if (!isset($_SESSION['user'])) {
+    header("Location: login.php");
+}
+if (isset($_POST['Post'])) {
+    $title = $_POST['title'];
+    $body = $_POST['body'];
+    $user = $_SESSION['user']['name'];
+
+    require_once('utilities.php');
+
+    $conn = getConnection();
+
+    $conn->query("INSERT INTO blog (title, body, user) VALUES ('$title', '$body', '$user')");
+
+    header("Location: blog.php");
 }
 ?>
 
@@ -17,6 +31,19 @@ if (isset($_SESSION['todo'])) {
 
 <body>
     <?php include_once('navbar.php') ?>
+    <div class="container bg-light">
+        <form action="" method="post" class="mt-5">
+            <div>
+                <label>Post Title</label>
+                <input class="form-control" type="text" name="title" required>
+            </div>
+            <div>
+                <label>Post Body</label>
+                <textarea class="form-control" name='body' rows="3" required></textarea>
+            </div>
+            <input type="submit" class="form-control m-2 btn btn-primary" name="Post">
+        </form>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

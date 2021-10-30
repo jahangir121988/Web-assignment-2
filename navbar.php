@@ -15,10 +15,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="blog.php">Blog</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="post.php">Post</a>
-                </li>
                 <?php if (isset($_SESSION['user'])) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="post.php">Post</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="logout.php">Logout</a>
                     </li>
