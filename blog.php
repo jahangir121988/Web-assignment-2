@@ -17,6 +17,29 @@ if (isset($_SESSION['todo'])) {
 
 <body>
     <?php include_once('navbar.php') ?>
+    <div class="container">
+
+        <?php
+
+        require_once('utilities.php');
+        $conn = getConnection();
+        $posts = $conn->query("SELECT * FROM " . TABLE);
+        foreach ($posts as $key=>$post) :
+        ?>
+            <div class="jumbotron jumbotron-fluid bg-light border border-warning m-2">
+                <div class="container">
+                    <h1 class="display-4">#<?= $key ?>. <?= $post['title'] ?></h1>
+                    <div class="small float-right">Posted By: <?= $post['user'] ?></div>
+                    <div class="small float-right">Posted At: <?= $post['createdAt'] ?></div>
+                    <hr>
+                    <p class="lead"><?= $post['body'] ?></p>
+                </div>
+            </div>
+        <?php
+        endforeach
+        ?>
+
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

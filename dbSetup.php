@@ -7,11 +7,32 @@ $root_password = "";
 $db = 'blogcsm84';
 $table = 'blog';
 
+$body1 = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas aut, temporibus, necessitatibus aliquid fugit molestiae quia praesentium ipsum porro, modi illo voluptatibus doloribus quos vitae perferendis laborum. Doloribus, dolores? Delectus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas aut, temporibus, necessitatibus aliquid fugit molestiae quia praesentium ipsum porro, modi illo voluptatibus doloribus quos vitae perferendis laborum. Doloribus, dolores? Delectus. ";
+$body2 = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum temporibus quis fugiat laboriosam aperiam provident quod ullam odio cumque. Quis animi maxime reiciendis nam vel consequatur porro culpa, laborum suscipit! Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum temporibus quis fugiat laboriosam aperiam provident quod ullam odio cumque. Quis animi maxime reiciendis nam vel consequatur porro culpa, laborum suscipit! ";
+$body3 = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit temporibus architecto in adipisci delectus hic officiis dolorum tempore tempora magnam laborum pariatur ea quasi, ullam magni maiores laudantium! Officia, consequuntur? Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit temporibus architecto in adipisci delectus hic officiis dolorum tempore tempora magnam laborum pariatur ea quasi, ullam magni maiores laudantium! Officia, consequuntur? ";
+$body4 = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta obcaecati mollitia aliquid debitis ipsam reprehenderit sint rerum architecto, aspernatur maiores harum. Beatae ab vero quaerat aliquam nihil! Architecto, quasi cumque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta obcaecati mollitia aliquid debitis ipsam reprehenderit sint rerum architecto, aspernatur maiores harum. Beatae ab vero quaerat aliquam nihil! Architecto, quasi cumque. ";
+
 $blogPosts = array(
-    array("title" => "What is Lorem Ipsum?", "body" => `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`),
-    array("title" => "Why do we use it?", "body" => `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose`),
-    array("title" => "Where does it come from?", "body" => `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC.`),
-    array("title" => "Where can I get some?", "body" => `There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.`)
+    array(
+        "title" => "What is Lorem Ipsum?",
+        "body" => $body1,
+        "user" => "John"
+    ),
+    array(
+        "title" => "Why do we use it?",
+        "body" => $body2,
+        "user" => "Vein"
+    ),
+    array(
+        "title" => "Where does it come from?",
+        "body" => $body3,
+        "user" => "John"
+    ),
+    array(
+        "title" => "Where can I get some?",
+        "body" => $body4,
+        "user" => "Potter"
+    )
 );
 
 try {
@@ -26,12 +47,12 @@ try {
     }
 
     $dbh->exec("USE $db");
-    $dbh->exec("CREATE TABLE $table ( `id` INT NOT NULL AUTO_INCREMENT , `title` VARCHAR(255) NOT NULL , `body` TEXT NOT NULL , `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`))");
+    $dbh->exec("CREATE TABLE $table ( `id` INT NOT NULL AUTO_INCREMENT , `title` VARCHAR(255) NOT NULL , `user` VARCHAR(255) NOT NULL, `body` TEXT NOT NULL , `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`))");
 
     foreach ($blogPosts as $post) {
-        ["title" => $title, "body" => $body] = $post;
+        ["title" => $title, "body" => $body, "user" => $user] = $post;
         // echo $body;
-        $dbh->exec("INSERT INTO $table (title, body) VALUES ('$title','$body')");
+        $dbh->exec("INSERT INTO $table (title, body, user) VALUES ('$title','$body', '$user')");
     }
 
     echo "<h1>Database configured!</h1>";
