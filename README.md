@@ -36,10 +36,10 @@ Clone this repo using `git clone https://github.com/rajBinMoti/web-assignemnt-8t
 ## Screenshots
 
 Navbar when there is a guest user.
-![Logged-out Navbar](imgs\logged-out.png)
+![Logged-out Navbar](imgs/logged-out.png)
 Navbar when there is a logged-in user.
-![Logged-in Navbar](imgs\logged-in.png)
+![Logged-in Navbar](imgs/logged-in.png)
 On home page there display components of Todo and Read blog are imported from [components.php](components.php) and these same components are used in [todo.php](todo.php) and [blog.php](blog.php), respectively.
-![Home Page](imgs\home-page.png)
+![Home Page](imgs/home-page.png)
 On [Todo Page](todo.php) there is a add task component with display Todo component.
-![Todo Page](imgs\todo-page.png)
+![Todo Page](imgs/todo-page.png)
